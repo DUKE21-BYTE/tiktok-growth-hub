@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-cyan-400: #22d3ee;
   --color-cyan-500: #06b6d4;
