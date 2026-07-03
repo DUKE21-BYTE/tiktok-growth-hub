@@ -1,6 +1,5 @@
 // DOM Elements
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeToggle();
   initPWA();
   initLucideIcons();
   initHeader();
@@ -25,41 +24,6 @@ function initPWA() {
   }
 }
 
-function initThemeToggle() {
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  
-  // Check local storage or system preference
-  if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-
-  function updateIcon() {
-    if (!themeToggleBtn) return;
-    const isDark = document.documentElement.classList.contains('dark');
-    themeToggleBtn.innerHTML = isDark 
-      ? '<i data-lucide="sun" class="h-5 w-5"></i>' 
-      : '<i data-lucide="moon" class="h-5 w-5"></i>';
-    if (window.lucide) window.lucide.createIcons();
-  }
-
-  // Initial icon set
-  updateIcon();
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', function() {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('color-theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('color-theme', 'dark');
-      }
-      updateIcon();
-    });
-  }
-}
 
 function initLucideIcons() {
   if (window.lucide) {
